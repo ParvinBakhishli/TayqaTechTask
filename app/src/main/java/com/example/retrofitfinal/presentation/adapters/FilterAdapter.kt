@@ -9,7 +9,7 @@ import com.example.retrofitfinal.databinding.ItemFilterBinding
 import com.example.retrofitfinal.model.presentation.Country
 
 
-class FilterAdapter : ListAdapter<Country, FilterAdapter.FilterViewHolder>(callback) {
+class FilterAdapter : ListAdapter<FilterAdapter.FilterItem, FilterAdapter.FilterViewHolder>(callback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilterViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -25,21 +25,33 @@ class FilterAdapter : ListAdapter<Country, FilterAdapter.FilterViewHolder>(callb
     class FilterViewHolder(private val binding: ItemFilterBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(country: Country) {
-            binding.textView.text = country.name
+        fun bind(item: FilterItem) {
+            binding.checkbox.text = item.title
+            binding.checkbox.isChecked = item.isSelected
+
+            binding.checkbox.setOnClickListener {
+                binding.checkbox.isChecked = !binding.checkbox.isChecked
+            }
         }
 
     }
 
+
+    data class FilterItem(
+        val id: Int = 0,
+        val title: String,
+        val isSelected: Boolean = false
+    )
+
 }
 
 
-private val callback = object : DiffUtil.ItemCallback<Country>() {
-    override fun areItemsTheSame(oldItem: Country, newItem: Country): Boolean {
+private val callback = object : DiffUtil.ItemCallback<FilterAdapter.FilterItem>() {
+    override fun areItemsTheSame(oldItem: FilterAdapter.FilterItem, newItem: FilterAdapter.FilterItem): Boolean {
         return oldItem == newItem
     }
 
-    override fun areContentsTheSame(oldItem: Country, newItem: Country): Boolean {
+    override fun areContentsTheSame(oldItem: FilterAdapter.FilterItem, newItem: FilterAdapter.FilterItem): Boolean {
         return oldItem.id == newItem.id
     }
 }

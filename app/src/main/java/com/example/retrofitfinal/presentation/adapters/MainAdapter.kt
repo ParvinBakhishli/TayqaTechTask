@@ -6,14 +6,14 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.retrofitfinal.databinding.ItemMainBinding
-import com.example.retrofitfinal.model.presentation.Country
+import com.example.retrofitfinal.model.presentation.People
 
-class MainAdapter : ListAdapter<Country, MainAdapter.MainViewHolder>(callback) {
+class MainAdapter : ListAdapter<String, MainAdapter.MainViewHolder>(callback) {
 
     class MainViewHolder(private val binding: ItemMainBinding) :
         RecyclerView.ViewHolder(binding.root){
-            fun bind(country: Country){
-                binding.textView.text = country.name
+            fun bind(human: String){
+                binding.textView.text = human
             }
         }
 
@@ -29,13 +29,13 @@ class MainAdapter : ListAdapter<Country, MainAdapter.MainViewHolder>(callback) {
     }
 }
 
-private val callback = object : DiffUtil.ItemCallback<Country>() {
-    override fun areItemsTheSame(oldItem: Country, newItem: Country): Boolean {
+private val callback = object : DiffUtil.ItemCallback<String>() {
+    override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
         return oldItem == newItem
     }
 
-    override fun areContentsTheSame(oldItem: Country, newItem: Country): Boolean {
-        return oldItem.id == newItem.id
+    override fun areContentsTheSame(oldItem: String, newItem: String): Boolean {
+        return oldItem == newItem
     }
 
 }

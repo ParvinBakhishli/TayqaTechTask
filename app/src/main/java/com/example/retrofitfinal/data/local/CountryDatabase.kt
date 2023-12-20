@@ -1,9 +1,10 @@
-package com.example.retrofitfinal.model.local
+package com.example.retrofitfinal.data.local
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.retrofitfinal.model.local.CountryEntity
 
 @Database(entities = [CountryEntity::class], version = 1)
 abstract class CountryDatabase : RoomDatabase() {

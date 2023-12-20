@@ -5,5 +5,5 @@ import com.google.gson.annotations.SerializedName
 
 data class DataResponse(
     @SerializedName("countryList")
-    val countryList: List<CountryDto?>?
+    val countryList: List<CountryDto>?
 )

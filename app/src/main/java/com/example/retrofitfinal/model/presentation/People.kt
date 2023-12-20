@@ -1,7 +1,6 @@
 package com.example.retrofitfinal.model.presentation
 
-data class Country(
+data class People(
     val id: Int,
-    val name: String,
-    val cities: List<City>
+    val fullName: String
 )

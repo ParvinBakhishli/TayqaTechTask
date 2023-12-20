@@ -1,4 +1,4 @@
-package com.example.retrofitfinal.api
+package com.example.retrofitfinal.data.network
 
 import com.example.retrofitfinal.model.network.DataResponse
 import retrofit2.Response
